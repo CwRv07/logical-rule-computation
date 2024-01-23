@@ -36,6 +36,9 @@ export const originParser = <T extends Record<string, any>>(
   return parsedData;
 };
 
-const connectKey = (prefix: string, key: string, spaceMark: string = ".") => {
-  return prefix? prefix + spaceMark + key : key;
+/**
+ * @desc 通过操作符拼接key
+ */
+const connectKey = (prefix: string, key: string, operator: string = ".") => {
+  return prefix? prefix + operator + key : key;
 };
