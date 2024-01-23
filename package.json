@@ -9,18 +9,19 @@
   ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/es/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/types/index.d.ts",
   "exports": {
-    "types": "./dist/index.d.ts",
+    "types": "./dist/types/index.d.ts",
     "import": "./dist/es/index.js",
     "require": "./dist/cjs/index.js"
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build"
+    "build": "tsc && tsc-alias && vite build"
   },
   "devDependencies": {
     "typescript": "^5.3.3",
-    "vite": "^5.0.10"
+    "vite": "^5.0.10",
+    "tsc-alias": "^1.8.8"
   }
 }

@@ -5,14 +5,19 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
 
     /* Node mode */
     "moduleResolution": "Node",
+    "outDir": "./dist",
     "declaration": true,
-    "declarationDir": "dist",
-    "emitDeclarationOnly":true,
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "noEmit": false,
 
     /* Linting */
     "strict": true,
