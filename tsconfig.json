@@ -6,12 +6,13 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
 
-    /* Bundler mode */
-    "moduleResolution": "Bundler",
-    "allowImportingTsExtensions": true,
+    /* Node mode */
+    "moduleResolution": "Node",
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly":true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
 
     /* Linting */
     "strict": true,
