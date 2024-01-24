@@ -1,4 +1,4 @@
-import { ParsedData } from "@/types/Origin";
+import { ParsedOrigin } from "@/types/Origin";
 
 /**
  * @desc 解析待验证数据源，将数据对象扁平化
@@ -8,8 +8,8 @@ import { ParsedData } from "@/types/Origin";
  */
 export const originParser = <T extends Record<string, any>>(
   origin: T
-): ParsedData<T> => {
-  const parsedData: ParsedData<T> = {};
+): ParsedOrigin=> {
+  const parsedData: ParsedOrigin= {};
   const next = (prefix: string, object: Record<string, any>) => {
     Reflect.ownKeys(object).forEach(((key: string) => {
       if (

@@ -17,7 +17,7 @@ export const calc = (
   origin: Record<string, any>,
   operations: Operations = {}
 ): boolean => {
-  const parsedData = originParser(origin);
+  const parsedOrigin = originParser(origin);
   const formattedRules = formattingRules(rules);
   operations = { ...DefaultOperations, ...operations };
 
@@ -31,7 +31,7 @@ export const calc = (
       }
     } else {
       const [operator, key, value] = rule;
-      return operations[operator](parsedData[key], value);
+      return operations[operator](parsedOrigin[key], value);
     }
     return true;
   };
