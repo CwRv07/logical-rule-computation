@@ -18,23 +18,17 @@ export default defineConfig({
 					entryFileNames: "[name].js",
 					preserveModules: true,
 					preserveModulesRoot: "src",
-					dir: "dist/es",
+          dir: "dist/es",
+          exports: "named"
         },
 				{
 					format: "cjs",
 					entryFileNames: "[name].js",
 					preserveModules: true,
 					preserveModulesRoot: "src",
-					dir: "dist/cjs",
+          dir: "dist/cjs",
+          exports: "named"
         },
-        {
-          format: "iife",
-          name: "LogicalRuleComputation",
-          entryFileNames: "[name].js",
-          preserveModules: false,
-					preserveModulesRoot: "src",
-					dir: "dist/iife",
-				},
 			],
     },
     lib: {
