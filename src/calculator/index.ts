@@ -1,8 +1,10 @@
 import { RuleOptions } from "@/types/Rule";
 import { Operations } from "@/types/Operations";
+import { Report } from "@/types/Report";
 import { originParser } from "@/origin-parser/index";
 import { isLogicalRule } from "./utils";
-import { DefaultOperations } from "./defaultOptions";
+import { DEFAULT_OPERATIONS } from "./default-options";
+import { createReport } from "@/generate-report";
 
 /**
  * @desc 计算逻辑规则
@@ -12,31 +14,50 @@ import { DefaultOperations } from "./defaultOptions";
  *    { a: 25, b: { b: 20 } }
  *  );
  */
-export const calc = (
+export const calc = <GenerateReport extends boolean>(
   rules: RuleOptions,
   origin: Record<string, any>,
-  operations: Operations = {}
-): boolean => {
+  options: {
+    generateReport?: GenerateReport;
+    operations?: Operations;
+  } = {
+    generateReport: false as GenerateReport,
+    operations: {},
+  }
+): GenerateReport extends true ? Report : boolean => {
   const parsedOrigin = originParser(origin);
   const formattedRules = formattingRules(rules);
-  operations = { ...DefaultOperations, ...operations };
-
+  const operations = { ...DEFAULT_OPERATIONS, ...options.operations };
+  const report = createReport();
   const next = (rule: RuleOptions): boolean => {
     if (isLogicalRule(rule)) {
-      const [key, ...otherRules] = rule;
+      const [key, otherRules, message = ""] = rule;
       if (key === "all") {
-        return otherRules.every((item) => next(item));
+        const result = otherRules.every((item) => next(item));
+        // TODO 报告收集
+        console.log(message, result);
+        return result;
       } else if (key === "any") {
-        return otherRules.some((item) => next(item));
+        const result = otherRules.some((item) => next(item));
+        // TODO 报告收集
+        console.log(message, result);
+        return result;
       }
     } else {
-      const [operator, key, value] = rule;
-      return operations[operator](parsedOrigin[key], value);
+      const [operator, key, value, message = ""] = rule;
+      const result = operations[operator](parsedOrigin[key], value);
+      // TODO 报告收集
+      console.log(message, result);
+      return result;
     }
     return true;
   };
-
-  return next(formattedRules);
+  const result = next(formattedRules);
+  // @ts-ignore-next-line
+  return operations.generateReport
+    ? // @ts-ignore-next-line
+      report.setSuccess(result) && report.getReport()
+    : result;
 };
 
 /**

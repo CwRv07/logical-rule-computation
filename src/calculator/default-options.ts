@@ -3,7 +3,7 @@ import { Operations } from "@/types/Operations";
 /**
  * @desc 支持基础计算操作
  */
-export const DefaultOperations:Operations = {
+export const DEFAULT_OPERATIONS:Operations = {
   ">": (a:any, b:any) => a > b,
   "<": (a:any , b: any) => a < b,
   ">=": (a: any, b: any) => a >= b,
