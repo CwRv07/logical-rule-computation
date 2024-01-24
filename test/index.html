@@ -8,14 +8,7 @@
 </head>
 
 <body>
-  <script src="../dist/iife/index.js"></script>
-  <script>
-    const operation = LogicalRuleComputation.calc(
-      ["all", [">", "a", 10],[">", "b.b", 10]],
-      { a: 25, b: { b: 20 } }
-    );
-    console.log(operation); // false
-  </script>
+  <script type="module" src="./index.js"></script>
 </body>
 
 </html>
