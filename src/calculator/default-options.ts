@@ -1,5 +1,9 @@
 import { Operations } from "@/types/Operations";
-
+import { LogicalOperator } from "@/types/Rule";
+/**
+ * @desc 逻辑运算符
+ */
+export const LOGICAL_OPERATOR: LogicalOperator[] = ["all", "any"];
 /**
  * @desc 支持基础计算操作
  */

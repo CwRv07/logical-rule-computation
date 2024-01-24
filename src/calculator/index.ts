@@ -25,38 +25,36 @@ export const calc = <GenerateReport extends boolean>(
     operations: {},
   }
 ): GenerateReport extends true ? Report : boolean => {
+  const { generateReport:isGenerateReport, operations: userOperations } = options;
   const parsedOrigin = originParser(origin);
   const formattedRules = formattingRules(rules);
-  const operations = { ...DEFAULT_OPERATIONS, ...options.operations };
+  const operations = { ...DEFAULT_OPERATIONS, ...userOperations };
   const report = createReport();
   const next = (rule: RuleOptions): boolean => {
     if (isLogicalRule(rule)) {
+      let result: boolean;
       const [key, otherRules, message = ""] = rule;
+      isGenerateReport && report.pushLogicalReport([key, otherRules, message]);
       if (key === "all") {
-        const result = otherRules.every((item) => next(item));
-        // TODO 报告收集
-        console.log(message, result);
-        return result;
+        result = otherRules.every((item) => next(item));
       } else if (key === "any") {
-        const result = otherRules.some((item) => next(item));
-        // TODO 报告收集
-        console.log(message, result);
-        return result;
+        result = otherRules.some((item) => next(item));
       }
+      isGenerateReport && report.popLogicalReport(result!);
+      return result!;
     } else {
       const [operator, key, value, message = ""] = rule;
       const result = operations[operator](parsedOrigin[key], value);
-      // TODO 报告收集
-      console.log(message, result);
+      isGenerateReport &&
+        report.addComparisonReport([operator, key, value, message], result);
       return result;
     }
-    return true;
   };
   const result = next(formattedRules);
   // @ts-ignore-next-line
-  return operations.generateReport
+  return isGenerateReport
     ? // @ts-ignore-next-line
-      report.setSuccess(result) && report.getReport()
+      report.setSuccess(result) || report.getReport()
     : result;
 };
 

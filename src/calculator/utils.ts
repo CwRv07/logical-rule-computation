@@ -4,9 +4,7 @@ import {
   ComparisonRuleItem,
   LogicalOperator,
 } from "@/types/Rule";
-
-const LOGICAL_OPERATOR: LogicalOperator[] = ["all", "any"];
-
+import { LOGICAL_OPERATOR } from "./default-options";
 /**
  * @desc 判断是否为逻辑规则
  */

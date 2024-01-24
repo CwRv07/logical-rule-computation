@@ -1,7 +1,10 @@
 /**
  * @desc 比较规则类型
  * @example
- * 表示"num"字段要大于10
+ * 语法：["all"|"any",逻辑规则数组,报告提示?]
+ *
+ * 1.表示"num"字段要大于10
+ *    [操作符,字段名,值,报告提示]
  *    [ ">", "num", 10, "num要大于10" ]
  */
 export type ComparisonRuleItem = [string, string, any,string?];
@@ -9,7 +12,9 @@ export type ComparisonRuleItem = [string, string, any,string?];
 /**
  * @desc 逻辑规则类型
  * @example
- * 表示"num"字段要大于10且小于20
+ * 语法：["all"|"any",逻辑规则数组,报告提示?]
+ *
+ * 1.表示"num"字段要大于10且小于20
  *    [ "all",
  *      [
  *        [ ">", "num", 10 ],
@@ -29,6 +34,10 @@ export type LogicalOperator= "all" | "any";
 /**
  * @desc 规则配置项类型
  * @example
+ * 语法：
+ * - 比较运算：[操作符,字段名,值,报告提示?]
+ * - 逻辑运算：["all"|"any",逻辑规则数组,报告提示?]
+ *
  * 1.表示"num"字段要大于10
  *    [ ">", "num", 10, "num要大于10" ]
  *
