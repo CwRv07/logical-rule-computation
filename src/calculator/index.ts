@@ -1,4 +1,4 @@
-import { RuleOptions } from "@/types/Rule";
+import { LogicalRuleItem, RuleOptions } from "@/types/Rule";
 import { Operations } from "@/types/Operations";
 import { Report } from "@/types/Report";
 import { originParser } from "@/origin-parser/index";
@@ -26,7 +26,8 @@ export const calc = <GenerateReport extends boolean>(
     operations: {},
   }
 ): GenerateReport extends true ? Report : boolean => {
-  const { generateReport:isGenerateReport, operations: userOperations } = options;
+  const { generateReport: isGenerateReport, operations: userOperations } =
+    options;
   const parsedOrigin = originParser(origin);
   const formattedRules = formattingRules(rules);
   const operations = { ...DEFAULT_OPERATIONS, ...userOperations };
@@ -62,10 +63,10 @@ export const calc = <GenerateReport extends boolean>(
 /**
  * @desc 格式化规则配置，保证以逻辑运算规则为第一项便于运算
  */
-const formattingRules = (rules: RuleOptions): RuleOptions => {
+const formattingRules = (rules: RuleOptions): LogicalRuleItem => {
   if (isLogicalRule(rules)) {
     return rules;
   } else {
-    return ["all", rules];
+    return ["all", [rules], ""];
   }
 };

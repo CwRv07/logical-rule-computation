@@ -4,7 +4,7 @@ import { LogicalOperator } from "./Rule";
  */
 export type Report = {
   success: boolean;
-  error: LogicalReportItem;
+  error: LogicalReportItem | null;
   detail: LogicalReportItem;
 };
 

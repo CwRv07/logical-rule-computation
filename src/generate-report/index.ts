@@ -53,12 +53,13 @@ const generateErrorReportByDetailReport = (
   reportItem: Report["detail"]
 ): Report["error"] => {
   const [op, otherReportItem, msg, s] = reportItem;
+  if (s === true) return null;
   const errorReportNode: LogicalReportItem = [op, [], msg, s];
   otherReportItem.forEach((item) => {
-    if (item[item[0].length - 1]) return;
+    if (item[item.length - 1]===true) return;
 
     if (isLogicalReport(item)) {
-      errorReportNode[1].push(generateErrorReportByDetailReport(item));
+      errorReportNode[1].push(generateErrorReportByDetailReport(item)!);
     } else {
       errorReportNode[1].push(item);
     }

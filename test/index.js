@@ -10,6 +10,8 @@ const result = calc(
     ],
     "a == 1 && b > 1",
   ],
+  // ["==", "a", 1,"a == 1"],
+
   { a: 1, b: { b1: 2, b3: null } },
   { generateReport: true }
 );
