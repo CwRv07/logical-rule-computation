@@ -62,7 +62,7 @@ export const setReportItemStatus = <
 };
 
 /**
- * @desc 判断是否为逻辑运算报文
+ * @desc 判断是否为逻辑运算报告
  */
 export const isLogicalReport = (
   reportItem: ReportItem
@@ -74,6 +74,9 @@ export const isLogicalReport = (
   );
 };
 
+/**
+ * @desc 判断是否为比较运算报告
+ */
 export const isComparisonReport = (
   reportItem: ReportItem
 ): reportItem is ComparisonReportItem => {

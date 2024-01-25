@@ -9,8 +9,9 @@ import { createReport } from "@/generate-report";
 /**
  * @desc 计算逻辑规则
  * @example
+ * 计算数据源是否满足规则“a > 10 && b.b > 10”
  *  calc(
- *    ["all", [">", "a", 10],[">", "b.b", 10]],
+ *    ["all",[[">", "a", 10],[">", "b.b", 10]], "a > 10 && b.b > 10"],
  *    { a: 25, b: { b: 20 } }
  *  );
  */
