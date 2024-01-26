@@ -1,10 +1,9 @@
 /**
  * @desc 比较规则类型
  * @example
- * 语法：["all"|"any",逻辑规则数组,报告提示?]
+ * 语法：[操作符,字段名,值,报告提示]
  *
  * 1.表示"num"字段要大于10
- *    [操作符,字段名,值,报告提示]
  *    [ ">", "num", 10, "num要大于10" ]
  */
 export type ComparisonRuleItem = [string, string, any,string?];
@@ -25,7 +24,7 @@ export type ComparisonRuleItem = [string, string, any,string?];
  */
 export type LogicalRuleItem = [
   LogicalOperator,
-  [...(ComparisonRuleItem | LogicalRuleItem)[]],
+  (ComparisonRuleItem | LogicalRuleItem)[],
   string?
 ];
 
