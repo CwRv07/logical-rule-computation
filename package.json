@@ -22,8 +22,10 @@
     "build": "tsc && tsc-alias && vite build"
   },
   "devDependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
     "@types/node": "^20.11.5",
     "@vitejs/plugin-vue": "^5.0.3",
+    "ant-design-vue": "4.x",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
