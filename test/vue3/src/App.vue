@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
-const h1 = ref("WelCome To Vue3");
+import LogicalRuleEditor from "./components/LogicalRuleEditor/index.vue";
 </script>
 
 <template>
-  <h1>
-    {{ h1 }}
-  </h1>
+  <LogicalRuleEditor />
 </template>
 
 <style scoped>
