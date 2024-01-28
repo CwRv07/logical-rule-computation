@@ -16,13 +16,17 @@
     "require": "./dist/cjs/index.js"
   },
   "scripts": {
-    "dev": "vite",
+    "start": "npm run build && npm run dev",
+    "dev": "npm run dev:vue",
+    "dev:vue": "vite -c ./test/vue3/vite.config.ts",
     "build": "tsc && tsc-alias && vite build"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
+    "@vitejs/plugin-vue": "^5.0.3",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10"
+    "vite": "^5.0.10",
+    "vue": "^3.4.15"
   }
 }
