@@ -2,10 +2,10 @@ import { LogicalRuleItem, RuleOptions } from "@/types/Rule";
 import { Operations } from "@/types/Operations";
 import { Report } from "@/types/Report";
 import { originParser } from "@/origin-parser/index";
-import { isLogicalRule } from "./utils";
+import { isLogicalRule, isComparisonRule } from "./utils";
 import { LOGICAL_OPERATOR, DEFAULT_OPERATIONS } from "./default-options";
 import { createReport } from "@/generate-report";
-export { LOGICAL_OPERATOR };
+export { LOGICAL_OPERATOR, isLogicalRule, isComparisonRule};
 /**
  * @desc 计算逻辑规则
  * @example
