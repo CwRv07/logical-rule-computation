@@ -6,7 +6,7 @@
  * 1.表示"num"字段要大于10
  *    [ ">", "num", 10, "num要大于10" ]
  */
-export type ComparisonRuleItem = [string, string, any,string?];
+export type ComparisonRuleItem = [string, string, any, string?];
 
 /**
  * @desc 逻辑规则类型
@@ -23,12 +23,15 @@ export type ComparisonRuleItem = [string, string, any,string?];
  *    ]
  */
 export type LogicalRuleItem = [
-  LogicalOperator,
+  LOGICAL_OPERATOR,
   (ComparisonRuleItem | LogicalRuleItem)[],
   string?
 ];
 
-export type LogicalOperator= "all" | "any";
+export enum LOGICAL_OPERATOR {
+  ALL = "all",
+  ANY = "any",
+}
 
 /**
  * @desc 规则配置项类型

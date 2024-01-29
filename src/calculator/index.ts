@@ -3,9 +3,9 @@ import { Operations } from "@/types/Operations";
 import { Report } from "@/types/Report";
 import { originParser } from "@/origin-parser/index";
 import { isLogicalRule } from "./utils";
-import { DEFAULT_OPERATIONS } from "./default-options";
+import { LOGICAL_OPERATOR, DEFAULT_OPERATIONS } from "./default-options";
 import { createReport } from "@/generate-report";
-
+export { LOGICAL_OPERATOR };
 /**
  * @desc 计算逻辑规则
  * @example
@@ -67,6 +67,6 @@ const formattingRules = (rules: RuleOptions): LogicalRuleItem => {
   if (isLogicalRule(rules)) {
     return rules;
   } else {
-    return ["all", [rules], ""];
+    return [LOGICAL_OPERATOR.ALL, [rules], ""];
   }
 };

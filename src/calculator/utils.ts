@@ -2,9 +2,8 @@ import {
   RuleOptions,
   LogicalRuleItem,
   ComparisonRuleItem,
-  LogicalOperator,
+  LOGICAL_OPERATOR,
 } from "@/types/Rule";
-import { LOGICAL_OPERATOR } from "./default-options";
 /**
  * @desc 判断是否为逻辑规则
  */
@@ -12,7 +11,7 @@ export const isLogicalRule = (rule: RuleOptions): rule is LogicalRuleItem => {
   return (
     Array.isArray(rule) &&
     (rule.length === 2 || rule.length === 3) &&
-    LOGICAL_OPERATOR.includes(rule[0] as LogicalOperator)
+    Object.values(LOGICAL_OPERATOR).includes(rule[0] as LOGICAL_OPERATOR)
   );
 };
 

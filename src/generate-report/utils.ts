@@ -70,7 +70,7 @@ export const isLogicalReport = (
   return (
     Array.isArray(reportItem) &&
     reportItem.length === 4 &&
-    LOGICAL_OPERATOR.includes(reportItem[0])
+    Object.values(LOGICAL_OPERATOR).includes(reportItem[0])
   );
 };
 

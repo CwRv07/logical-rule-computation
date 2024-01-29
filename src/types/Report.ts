@@ -1,4 +1,4 @@
-import { LogicalOperator } from "./Rule";
+import { LOGICAL_OPERATOR } from "./Rule";
 /**
  * @desc 报告类型
  */
@@ -17,7 +17,7 @@ export type ReportItem = LogicalReportItem | ComparisonReportItem;
  * @desc 逻辑报告项类型
  */
 export type LogicalReportItem = [
-  LogicalOperator,
+  LOGICAL_OPERATOR,
   (LogicalReportItem | ComparisonReportItem)[],
   string,
   boolean
