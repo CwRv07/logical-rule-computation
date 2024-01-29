@@ -18,7 +18,7 @@ const report = calc(
         [
           ["eq", "b.b3", null, "b.b3 === null"],
           ["neq", "b.b3", null, "b.b3 !== null"]
-        ]
+        ],
         "b.b3 === null || b.b3 !== null"
       ],
     ],
