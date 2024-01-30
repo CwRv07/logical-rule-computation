@@ -23,7 +23,7 @@ const handleLogicalOperatorChange = () => {
 /**
  * 新增比较规则
  */
-const handleAddRule = () => {
+const handleAddComparisonRule = () => {
   rule.value[1].push(['', '', '',''])
 }
 </script>
@@ -49,7 +49,7 @@ const handleAddRule = () => {
         </template>
       </div>
       <div class="action-bar">
-        <Button class="action-new" type="dashed" @click="handleAddRule"><PlusOutlined /></Button>
+        <Button class="action-new" type="dashed" @click="handleAddComparisionRule"><PlusOutlined /></Button>
       </div>
     </div>
   </div>
