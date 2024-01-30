@@ -11,12 +11,21 @@ const state = ref({
 });
 
 // 逻辑运算符
+/**
+ * 改变逻辑运算符
+ */
 const handleLogicalOperatorChange = () => {
   rule.value[0] =
     rule.value[0] === LOGICAL_OPERATOR.ALL
       ? LOGICAL_OPERATOR.ANY
       : LOGICAL_OPERATOR.ALL;
 };
+/**
+ * 新增比较规则
+ */
+const handleAddRule = () => {
+  rule.value[1].push(['', '', '',''])
+}
 </script>
 
 <template>
@@ -40,7 +49,7 @@ const handleLogicalOperatorChange = () => {
         </template>
       </div>
       <div class="action-bar">
-        <Button class="action-new" type="dashed"><PlusOutlined /></Button>
+        <Button class="action-new" type="dashed" @click="handleAddRule"><PlusOutlined /></Button>
       </div>
     </div>
   </div>

@@ -9,7 +9,7 @@ const rule = defineModel<ComparisonRuleItem>({ required: true });
   <div class="comparison-rule-node">
     <Cascader class="rule-field" :placeholder="rule[1]" />
     <Select class="rule-operator" :placeholder="rule[0]" />
-    <Select class="rule-value" :placeholder="JSON.stringify(rule[2])" />
+    <Select class="rule-value" :placeholder="String(rule[2])" />
     <div class="action-bar">
       <Button class="action-delete" type="dashed" shape="circle" size="small">
         <DeleteOutlined />
