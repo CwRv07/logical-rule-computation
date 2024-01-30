@@ -1,24 +1,32 @@
 <script setup lang="ts">
-import { defineModel } from "vue";
+import { ref, onUnmounted } from "vue";
 import {
   ComparisonRuleItem,
   LogicalRuleItem,
+  RuleOptions,
   isLogicalRule,
 } from "logical-rule-computation";
 import LogicalRuleNode from "./LogicalRuleNode.vue";
 import ComparisonRuleNode from "./ComparisonRuleNode.vue";
-const rule = defineModel<LogicalRuleItem | ComparisonRuleItem>({
-  required: true,
+const rule = defineModel<RuleOptions>({ required: true });
+
+const state = ref({
+  isLogicalRule: isLogicalRule(rule.value),
+});
+
+/* 逻辑规则监听 */
+
+onUnmounted(() => {
+  console.log("rule-node", rule);
 });
 </script>
 
 <template>
-  <template v-if="isLogicalRule(rule)">
-    <LogicalRuleNode v-model="(rule as LogicalRuleItem)" />
-  </template>
-  <template v-else>
-    <ComparisonRuleNode v-model="(rule as ComparisonRuleItem)" />
-  </template>
+  <LogicalRuleNode
+    v-if="state.isLogicalRule"
+    v-model="(rule as LogicalRuleItem)"
+  />
+  <ComparisonRuleNode v-else v-model="(rule as ComparisonRuleItem)" />
 </template>
 
 <style scoped></style>

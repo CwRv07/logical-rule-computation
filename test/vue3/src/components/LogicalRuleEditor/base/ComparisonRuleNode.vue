@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineModel } from "vue";
 import { type ComparisonRuleItem } from "logical-rule-computation";
 import { Cascader, Select, Button } from "ant-design-vue";
 import { DeleteOutlined } from "@ant-design/icons-vue";
@@ -8,9 +7,9 @@ const rule = defineModel<ComparisonRuleItem>({ required: true });
 
 <template>
   <div class="comparison-rule-node">
-    <Cascader class="rule-field" :placeholder="rule[1]"/>
-    <Select class="rule-operator" :placeholder="rule[0]"/>
-    <Select class="rule-value" :placeholder="JSON.stringify(rule[2])"/>
+    <Cascader class="rule-field" :placeholder="rule[1]" />
+    <Select class="rule-operator" :placeholder="rule[0]" />
+    <Select class="rule-value" :placeholder="JSON.stringify(rule[2])" />
     <div class="action-bar">
       <Button class="action-delete" type="dashed" shape="circle" size="small">
         <DeleteOutlined />

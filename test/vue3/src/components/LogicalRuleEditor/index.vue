@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import { defineModel } from "vue";
-import RuleGroup from "./base/RuleGroup.vue";
+import RuleNode from "./base/RuleNode.vue";
 import { RuleOptions } from "logical-rule-computation";
-const rules = defineModel<RuleOptions>({
-  default: [],
-});
+const rules = defineModel<RuleOptions>({ required: true, default: [] });
 </script>
 
 <template>
   <div class="logical-rule-editor">
-    <RuleGroup v-model="rules"/>
+    <RuleNode v-model="rules" />
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

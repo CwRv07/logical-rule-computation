@@ -1,13 +1,22 @@
 <script setup lang="ts">
-import { ref, defineModel } from "vue";
+import { ref } from "vue";
 import { LogicalRuleItem, LOGICAL_OPERATOR } from "logical-rule-computation";
 import { Switch, Button } from "ant-design-vue";
 import { PlusOutlined } from "@ant-design/icons-vue";
 import RuleNode from "./RuleNode.vue";
 const rule = defineModel<LogicalRuleItem>({ required: true });
+
 const state = ref({
   checked: rule.value[0] === LOGICAL_OPERATOR.ALL,
 });
+
+// 逻辑运算符
+const handleLogicalOperatorChange = () => {
+  rule.value[0] =
+    rule.value[0] === LOGICAL_OPERATOR.ALL
+      ? LOGICAL_OPERATOR.ANY
+      : LOGICAL_OPERATOR.ALL;
+};
 </script>
 
 <template>
@@ -15,6 +24,7 @@ const state = ref({
     <div class="logical-operator">
       <Switch
         v-model:checked="state.checked"
+        @change="handleLogicalOperatorChange"
         checked-children="且"
         un-checked-children="或"
         :style="{ 'background-color': state.checked ? '' : '#41b883' }"
@@ -22,8 +32,11 @@ const state = ref({
     </div>
     <div class="comparison-rule">
       <div class="rule-list">
-        <template v-for="item in rule[1]" :key="item.join(',')">
-          <RuleNode :modelValue="item" @update:modelValue="(console as any)" />
+        <template v-for="(item, index) in rule[1]" :key="item[item.length - 1]">
+          <RuleNode
+            :model-value="item"
+            @update:model-value="(e) => (rule[1][index] = e)"
+          />
         </template>
       </div>
       <div class="action-bar">
