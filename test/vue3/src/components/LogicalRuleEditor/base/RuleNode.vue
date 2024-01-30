@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onUnmounted } from "vue";
+import { ref } from "vue";
 import {
   ComparisonRuleItem,
   LogicalRuleItem,
@@ -16,9 +16,6 @@ const state = ref({
 
 /* 逻辑规则监听 */
 
-onUnmounted(() => {
-  console.log("rule-node", rule);
-});
 </script>
 
 <template>
