@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Ref } from 'vue';
+import type { Ref } from "vue";
 import { LOGICAL_OPERATOR, type RuleOptions } from "logical-rule-computation";
 import LogicalRuleEditor from "./components/LogicalRuleEditor/index.vue";
-const rules:Ref<RuleOptions>=ref([
+const rules: Ref<RuleOptions> = ref([
   LOGICAL_OPERATOR.ALL,
   [
     ["==", "a", 1, "a == 1"],
