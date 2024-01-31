@@ -16,6 +16,15 @@ const rules: Ref<RuleOptions> = ref([
       ],
       "b.b3 === null || b.b3 !== null",
     ],
+    [
+      LOGICAL_OPERATOR.ANY,
+      [
+        ["eq", "b.b3", null, "b.b3 === null"],
+        ["neq", "b.b3", null, "b.b3 !== null"],
+      ],
+      "b.b3 === null || b.b3 !== null",
+    ],
+    [">", "b.b1", 1, "b > 1"],
   ],
   "a == 1 && b > 1",
 ]);
