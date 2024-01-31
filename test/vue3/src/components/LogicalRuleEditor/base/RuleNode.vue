@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import {
   ComparisonRuleItem,
   LogicalRuleItem,
@@ -14,15 +13,11 @@ const emits = defineEmits<{
   "delete-rule": [];
   "transform-logical-rule": [];
 }>();
-
-const state = ref({
-  isLogicalRule: isLogicalRule(rule.value),
-});
 </script>
 
 <template>
   <LogicalRuleNode
-    v-if="state.isLogicalRule"
+    v-if="isLogicalRule(rule)"
     v-model="(rule as LogicalRuleItem)"
     @delete-rule="emits('delete-rule')"
     @transform-logical-rule="emits('transform-logical-rule')"
