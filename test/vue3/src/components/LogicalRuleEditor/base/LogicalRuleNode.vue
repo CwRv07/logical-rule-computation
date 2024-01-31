@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { toRef, onUpdated, ref, watch } from "vue";
+import { toRef, ref, watch } from "vue";
 import {
   LogicalRuleItem,
   ComparisonRuleItem,
   LOGICAL_OPERATOR,
+  isLogicalRule,
 } from "logical-rule-computation";
 import { Switch, Button } from "ant-design-vue";
-import { PlusOutlined, DeleteOutlined } from "@ant-design/icons-vue";
+import { PlusOutlined, DeleteOutlined, FullscreenExitOutlined } from "@ant-design/icons-vue";
 import RuleNode from "./RuleNode.vue";
 const rule = defineModel<LogicalRuleItem>({ required: true });
 const emits = defineEmits<{
   "delete-rule": [];
+  "transform-rule": [];
 }>();
 const state = ref({
   checked: rule.value[0] === LOGICAL_OPERATOR.ALL,
@@ -61,16 +63,24 @@ const handlePushComparisonRule = (
   handleAddRule(newRule);
 };
 
-const handleTransformLogicalRule = (
+const handleTransformRule = (
   rule: LogicalRuleItem | ComparisonRuleItem,
   index: number
 ) => {
-  const newRule: LogicalRuleItem = [
-    LOGICAL_OPERATOR.ALL,
-    [rule, ["", "", "", ""]],
-    "",
-  ];
-  handleAddRule(newRule, index, true);
+  if (isLogicalRule(rule)) {
+    const newRule: ComparisonRuleItem = (rule[1].find(
+      (item) => !isLogicalRule(item)
+    ) ?? ["", "", "", ""]) as ComparisonRuleItem;
+    console.log(newRule);
+    handleAddRule(newRule, index, true);
+  } else {
+    const newRule: LogicalRuleItem = [
+      LOGICAL_OPERATOR.ALL,
+      [rule, ["", "", "", ""]],
+      "",
+    ];
+    handleAddRule(newRule, index, true);
+  }
 };
 /* 规则增删管理-end */
 </script>
@@ -99,7 +109,7 @@ const handleTransformLogicalRule = (
             :model-value="item"
             @update:model-value="(e:typeof item) => (rule[1][index] = e)"
             @delete-rule="handleDeleteRule(index)"
-            @transform-logical-rule="handleTransformLogicalRule(item, index)"
+            @transform-rule="handleTransformRule(item, index)"
           />
         </template>
       </div>
@@ -113,6 +123,13 @@ const handleTransformLogicalRule = (
         </Button>
         <Button class="action-delete" type="text" @click="emits('delete-rule')">
           <DeleteOutlined />
+        </Button>
+        <Button
+          class="action-transform"
+          type="text"
+          @click="emits('transform-rule')"
+        >
+          <FullscreenExitOutlined />
         </Button>
       </div>
     </div>

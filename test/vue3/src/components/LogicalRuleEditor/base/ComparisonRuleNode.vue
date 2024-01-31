@@ -5,7 +5,7 @@ import { DeleteOutlined, FullscreenOutlined } from "@ant-design/icons-vue";
 const rule = defineModel<ComparisonRuleItem>({ required: true });
 const emits = defineEmits<{
   "delete-rule": [];
-  "transform-logical-rule": [];
+  "transform-rule": [];
 }>();
 </script>
 
@@ -29,7 +29,7 @@ const emits = defineEmits<{
         type="dashed"
         shape="circle"
         size="small"
-        @click="emits('transform-logical-rule')"
+        @click="emits('transform-rule')"
       >
         <FullscreenOutlined />
       </Button>
