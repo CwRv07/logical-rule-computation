@@ -5,12 +5,14 @@ export type FieldOptions = (FieldParentOption | FieldLeafOption)[];
 export type FieldParentOption = {
   label: string;
   value: string;
+  isLeaf: false;
   children?: (FieldParentOption|FieldLeafOption)[];
 };
 
 export type FieldLeafOption = {
   label: string;
   value: string;
+  isLeaf: true;
   operations: {
     label: string;
     operator: string;
