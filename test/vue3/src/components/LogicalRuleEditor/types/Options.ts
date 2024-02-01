@@ -13,12 +13,14 @@ export type FieldLeafOption = {
   label: string;
   value: string;
   isLeaf: true;
-  operations: {
-    label: string;
-    value: string;
-    type: FieldInputType,
-    options?: Record<string, any>;
-  }[]
+  operations: OperationOption[]
+}
+
+export type OperationOption = {
+  label: string;
+  value: string;
+  type: FieldInputType,
+  options?: Record<string, any>;
 }
 
 export enum FieldInputType{
