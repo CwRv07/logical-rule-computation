@@ -15,7 +15,7 @@ export type FieldLeafOption = {
   isLeaf: true;
   operations: {
     label: string;
-    operator: string;
+    value: string;
     type: FieldInputType,
     options?: Record<string, any>;
   }[]
