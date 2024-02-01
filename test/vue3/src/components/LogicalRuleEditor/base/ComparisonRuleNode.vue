@@ -1,19 +1,91 @@
 <script setup lang="ts">
+import { inject, ref, computed } from "vue";
 import { type ComparisonRuleItem } from "logical-rule-computation";
-import { Cascader, Select, Button } from "ant-design-vue";
+import {
+  Cascader,
+  Select,
+  Button,
+  type CascaderProps,
+  type SelectProps,
+} from "ant-design-vue";
 import { DeleteOutlined, FullscreenOutlined } from "@ant-design/icons-vue";
+import {
+  RuleEditorProps,
+  FieldLeafOption,
+  FieldParentOption,
+  OperationOption,
+} from "../types";
+import { isFieldLeafOption } from "../utils";
+import InputComponent from "./InputComponent.vue";
+
 const rule = defineModel<ComparisonRuleItem>({ required: true });
 const emits = defineEmits<{
   "delete-rule": [];
   "transform-rule": [];
 }>();
+const fieldOptions = inject<RuleEditorProps["fieldOptions"]>("field-options")!;
+
+const state = ref<{
+  selectedLeafOption: FieldLeafOption | null;
+  selectedOperation: FieldLeafOption["operations"][0] | null;
+}>({
+  selectedLeafOption: null,
+  selectedOperation: null,
+});
+const operatorSelectOptions = computed(() => {
+  const operations = state.value.selectedLeafOption?.operations ?? [];
+  console.log(operations);
+  return operations;
+});
+const inputComponentOptions = computed(() => {
+  const operations = state.value.selectedOperation;
+  if (operations == null) return null;
+  return {
+    type: operations.type,
+    componentProps: operations.options,
+  };
+});
+
+const handleFieldSelect = (
+  _: string[],
+  selectedOptions: (FieldParentOption | FieldLeafOption)[]
+) => {
+  const currentOptions = selectedOptions[selectedOptions.length - 1];
+  if (isFieldLeafOption(currentOptions)) {
+    state.value.selectedLeafOption = currentOptions;
+  } else {
+    return;
+  }
+};
+const handleOperatorSelect = (_: string, selectedOption: OperationOption) => {
+  state.value.selectedOperation = selectedOption;
+};
 </script>
 
 <template>
   <div class="comparison-rule-node">
-    <Cascader class="rule-field" :placeholder="rule[1]" />
-    <Select class="rule-operator" :placeholder="rule[0]" />
-    <Select class="rule-value" :placeholder="String(rule[2])" />
+    <Cascader
+      class="rule-field"
+      v-model="rule[1]"
+      :options="fieldOptions"
+      change-on-select
+      @change="handleFieldSelect as CascaderProps['onChange']"
+      placeholder="请选择条件字段"
+    />
+    <Select
+      v-if="state.selectedLeafOption"
+      class="rule-operator"
+      v-model="rule[0]"
+      :options="operatorSelectOptions"
+      @change="handleOperatorSelect as SelectProps['onChange']"
+      placeholder="请选择运算符"
+    />
+    <InputComponent
+      v-if="state.selectedOperation"
+      v-model="rule[2]"
+      :type="inputComponentOptions!.type"
+      :component-props="inputComponentOptions!.componentProps"
+    />
     <div class="action-bar">
       <Button
         class="action-delete"
@@ -47,9 +119,6 @@ const emits = defineEmits<{
   }
   .rule-operator {
     width: 150px;
-  }
-  .rule-value {
-    width: 250px;
   }
   .action-bar {
     margin-left: 5px;
