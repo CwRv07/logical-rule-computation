@@ -140,6 +140,7 @@ const handleOperatorSelect = (_: string, selectedOption: OperationOption) => {
     margin-left: 5px;
     display: flex;
     flex-wrap: nowrap;
+    gap: 2px;
     overflow-x: auto;
   }
 }
