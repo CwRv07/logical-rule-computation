@@ -6,7 +6,7 @@ export type FieldParentOption = {
   label: string;
   value: string;
   isLeaf: false;
-  children?: (FieldParentOption | FieldLeafOption)[];
+  children: (FieldParentOption | FieldLeafOption)[];
 };
 
 export type FieldLeafOption = {

@@ -15,7 +15,11 @@ import {
   FieldParentOption,
   OperationOption,
 } from "../types";
-import { isFieldLeafOption } from "../utils";
+import {
+  isFieldLeafOption,
+  INTERVAL_CHAR,
+  getFieldOptionsByValue,
+} from "../utils";
 import InputComponent from "./InputComponent.vue";
 
 const rule = defineModel<ComparisonRuleItem>({ required: true });
@@ -25,12 +29,24 @@ const emits = defineEmits<{
 }>();
 const fieldOptions = inject<RuleEditorProps["fieldOptions"]>("field-options")!;
 
+const TRY_INIT_OPTION = getFieldOptionsByValue(fieldOptions, rule.value[1]);
 const state = ref<{
   selectedLeafOption: FieldLeafOption | null;
   selectedOperation: FieldLeafOption["operations"][0] | null;
 }>({
-  selectedLeafOption: null,
-  selectedOperation: null,
+  selectedLeafOption: (() =>
+    isFieldLeafOption(TRY_INIT_OPTION) ? TRY_INIT_OPTION : null)(),
+  selectedOperation: (() =>
+    isFieldLeafOption(TRY_INIT_OPTION)
+      ? TRY_INIT_OPTION.operations.find(
+          (item) => item.value === rule.value[0]
+        ) || null
+      : null)(),
+});
+
+const cascaderValue = computed({
+  get: () => rule.value[1].split(INTERVAL_CHAR),
+  set: (selectedValues) => (rule.value[1] = selectedValues.join(INTERVAL_CHAR)),
 });
 const operatorSelectOptions = computed(() => {
   const operations = state.value.selectedLeafOption?.operations ?? [];
@@ -66,7 +82,7 @@ const handleOperatorSelect = (_: string, selectedOption: OperationOption) => {
   <div class="comparison-rule-node">
     <Cascader
       class="rule-field"
-      v-model="rule[1]"
+      v-model:value="cascaderValue"
       :options="fieldOptions"
       change-on-select
       @change="handleFieldSelect as CascaderProps['onChange']"
@@ -75,7 +91,7 @@ const handleOperatorSelect = (_: string, selectedOption: OperationOption) => {
     <Select
       v-if="state.selectedLeafOption"
       class="rule-operator"
-      v-model="rule[0]"
+      v-model:value="rule[0]"
       :options="operatorSelectOptions"
       @change="handleOperatorSelect as SelectProps['onChange']"
       placeholder="请选择运算符"

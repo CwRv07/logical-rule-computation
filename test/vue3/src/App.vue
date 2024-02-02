@@ -10,8 +10,8 @@ import {
 const rules: Ref<RuleOptions> = ref([
   LOGICAL_OPERATOR.ALL,
   [
-    ["==", "a", 1, "a == 1"],
-    [">", "b.b1", 1, "b > 1"],
+    ["eq", "count", 1, "a == 1"],
+    [">", "count$$totalCount", 1, "b > 1"],
     [
       LOGICAL_OPERATOR.ANY,
       [
@@ -40,7 +40,7 @@ const fieldOptions = ref<RuleEditorProps["fieldOptions"]>([
     children: [
       {
         label: "总人数",
-        value: "count.total",
+        value: "totalCount",
         isLeaf: true,
         operations: [
           {

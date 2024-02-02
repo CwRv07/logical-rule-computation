@@ -12,13 +12,13 @@ const value = defineModel<number | string>();
   <InputNumber
     class="w-200px"
     v-if="props.type === FieldInputType.number"
-    v-model="value"
+    v-model:value="value"
     v-bind="props.componentProps"
   />
   <Input
     class="w-200px"
     v-else-if="props.type === FieldInputType.text"
-    v-model="value"
+    v-model:value="value"
     v-bind="props.componentProps"
   />
 </template>
