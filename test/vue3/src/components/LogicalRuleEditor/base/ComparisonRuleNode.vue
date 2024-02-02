@@ -50,7 +50,6 @@ const cascaderValue = computed({
 });
 const operatorSelectOptions = computed(() => {
   const operations = state.value.selectedLeafOption?.operations ?? [];
-  console.log(operations);
   return operations;
 });
 const inputComponentOptions = computed(() => {

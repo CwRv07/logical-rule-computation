@@ -71,7 +71,6 @@ const handleTransformRule = (
     const newRule: ComparisonRuleItem = (rule[1].find(
       (item) => !isLogicalRule(item)
     ) ?? ["", "", "", ""]) as ComparisonRuleItem;
-    console.log(newRule);
     handleAddRule(newRule, index, true);
   } else {
     const newRule: LogicalRuleItem = [
