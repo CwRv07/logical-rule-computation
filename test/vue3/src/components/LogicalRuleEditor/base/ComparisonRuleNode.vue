@@ -50,15 +50,12 @@ const cascaderValue = computed({
 });
 const operatorSelectOptions = computed(() => {
   const operations = state.value.selectedLeafOption?.operations ?? [];
-  return operations;
-});
-const inputComponentOptions = computed(() => {
-  const operations = state.value.selectedOperation;
-  if (operations == null) return null;
-  return {
-    type: operations.type,
-    componentProps: operations.options,
-  };
+  return operations.map(({ label, value, type, options }) => ({
+    label,
+    value,
+    _type: type,
+    _options: options,
+  }));
 });
 
 const handleFieldSelect = (
@@ -72,8 +69,9 @@ const handleFieldSelect = (
     return;
   }
 };
-const handleOperatorSelect = (_: string, selectedOption: OperationOption) => {
-  state.value.selectedOperation = selectedOption;
+const handleOperatorSelect = (_: string, selectedOption: any) => {
+  const { label, value, _type: type, _options: options } = selectedOption;
+  state.value.selectedOperation = { label, value, type, options };
 };
 </script>
 
@@ -98,8 +96,8 @@ const handleOperatorSelect = (_: string, selectedOption: OperationOption) => {
     <InputComponent
       v-if="state.selectedOperation"
       v-model="rule[2]"
-      :type="inputComponentOptions!.type"
-      :component-props="inputComponentOptions!.componentProps"
+      :type="state.selectedOperation.type"
+      :component-props="state.selectedOperation.options"
     />
     <div class="action-bar">
       <Button

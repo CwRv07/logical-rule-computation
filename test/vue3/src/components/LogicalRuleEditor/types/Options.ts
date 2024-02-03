@@ -28,7 +28,7 @@ export enum FieldInputType {
   text = "text",
   select = "select",
   date = "date",
-  datetime = "datetime",
+  time = "time",
 }
 
 export type OperatorOptions = Record<string, OperationRule>;

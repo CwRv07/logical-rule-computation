@@ -7,7 +7,11 @@ import {
   isLogicalRule,
 } from "logical-rule-computation";
 import { Switch, Button } from "ant-design-vue";
-import { PlusOutlined, DeleteOutlined, FullscreenExitOutlined } from "@ant-design/icons-vue";
+import {
+  PlusOutlined,
+  DeleteOutlined,
+  FullscreenExitOutlined,
+} from "@ant-design/icons-vue";
 import RuleNode from "./RuleNode.vue";
 const rule = defineModel<LogicalRuleItem>({ required: true });
 const emits = defineEmits<{
@@ -58,7 +62,7 @@ const handleDeleteRule = (index: number) => {
 };
 
 const handlePushComparisonRule = (
-  newRule: ComparisonRuleItem = ["", "", "", ""]
+  newRule: ComparisonRuleItem = ["", "", , ""]
 ) => {
   handleAddRule(newRule);
 };
@@ -70,12 +74,12 @@ const handleTransformRule = (
   if (isLogicalRule(rule)) {
     const newRule: ComparisonRuleItem = (rule[1].find(
       (item) => !isLogicalRule(item)
-    ) ?? ["", "", "", ""]) as ComparisonRuleItem;
+    ) ?? ["", "", , ""]) as ComparisonRuleItem;
     handleAddRule(newRule, index, true);
   } else {
     const newRule: LogicalRuleItem = [
       LOGICAL_OPERATOR.ALL,
-      [rule, ["", "", "", ""]],
+      [rule, ["", "", , ""]],
       "",
     ];
     handleAddRule(newRule, index, true);

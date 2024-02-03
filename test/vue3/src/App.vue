@@ -10,31 +10,13 @@ import {
 const rules: Ref<RuleOptions> = ref([
   LOGICAL_OPERATOR.ALL,
   [
-    ["eq", "count", 1, "a == 1"],
-    [">", "count$$totalCount", 1, "b > 1"],
-    [
-      LOGICAL_OPERATOR.ANY,
-      [
-        ["eq", "b.b3", null, "b.b3 === null"],
-        ["neq", "b.b3", null, "b.b3 !== null"],
-      ],
-      "b.b3 === null || b.b3 !== null",
-    ],
-    [
-      LOGICAL_OPERATOR.ANY,
-      [
-        ["eq", "b.b3", null, "b.b3 === null"],
-        ["neq", "b.b3", null, "b.b3 !== null"],
-      ],
-      "b.b3 === null || b.b3 !== null",
-    ],
-    [">", "b.b1", 1, "b > 1"],
+    ["<", "count$$totalCount", 5, "a < 1"],
+    [">", "count$$totalCount", 0, "b > 0"],
   ],
-  "a == 1 && b > 1",
 ]);
 const fieldOptions = ref<RuleEditorProps["fieldOptions"]>([
   {
-    label: "人数",
+    label: "人数限制",
     value: "count",
     isLeaf: false,
     children: [
@@ -62,11 +44,55 @@ const fieldOptions = ref<RuleEditorProps["fieldOptions"]>([
       },
     ],
   },
+  {
+    label: "参赛范围",
+    value: "range",
+    isLeaf: false,
+    children: [
+      {
+        label: "学院",
+        value: "college",
+        isLeaf: true,
+        operations: [
+          {
+            label: "属于",
+            value: "in",
+            type: FieldInputType.select,
+            options: {
+              mode: "multiple",
+              options: [
+                {
+                  label: "计算机学院",
+                  value: "computer-college",
+                },
+                {
+                  label: "数学学院",
+                  value: "math-college",
+                },
+                {
+                  label: "农学院",
+                  value: "agriculture-college",
+                },
+              ],
+            },
+          },
+          {
+            label: "不属于",
+            value: "nin",
+            type: FieldInputType.select,
+          },
+        ],
+      },
+    ],
+  },
 ]);
 </script>
 
 <template>
   <LogicalRuleEditor v-model="rules" :fieldOptions="fieldOptions" />
+  <div style="white-space: pre-wrap">
+    {{ JSON.stringify(rules, undefined, 2) }}
+  </div>
 </template>
 
 <style scoped>
