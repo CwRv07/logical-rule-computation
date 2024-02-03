@@ -6,6 +6,7 @@
 <div>
   <img src="document/img/preview.png">
 <div>
+
 ## 2. 使用方法
 
 ```typescript
