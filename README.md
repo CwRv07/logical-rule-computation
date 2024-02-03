@@ -35,9 +35,9 @@ pnpm add logical-rule-computation
   1.按需引入核心函数、常数与类型
 */
 import {
-	calc,
-	LOGICAL_OPERATOR,
-	type RuleOptions,
+  calc,
+  LOGICAL_OPERATOR,
+  type RuleOptions,
 } from "logical-rule-computation";
 
 /*
@@ -48,20 +48,20 @@ import {
   如下案例为 a==1 && b.b1>1 && (b.b3===null || b.b3!==null)
 */
 const rules: RuleOptions = [
-	LOGICAL_OPERATOR.ALL,
-	[
-		["==", "a", 1, "a == 1"],
-		[">", "b.b1", 1, "b > 1"],
-		[
-			LOGICAL_OPERATOR.ANY,
-			[
-				["eq", "b.b3", null, "b.b3 === null"],
-				["neq", "b.b3", null, "b.b3 !== null"],
-			],
-			"b.b3 === null || b.b3 !== null",
-		],
-	],
-	"a == 1 && b > 1",
+  LOGICAL_OPERATOR.ALL,
+  [
+    ["==", "a", 1, "a == 1"],
+    [">", "b.b1", 1, "b > 1"],
+    [
+      LOGICAL_OPERATOR.ANY,
+      [
+        ["eq", "b.b3", null, "b.b3 === null"],
+        ["neq", "b.b3", null, "b.b3 !== null"],
+      ],
+      "b.b3 === null || b.b3 !== null",
+    ],
+  ],
+  "a == 1 && b > 1",
 ];
 
 /* 3.提供待计算数据源（支持嵌套对象，可如上案例进行扁平化书写读取属性） */
