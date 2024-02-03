@@ -11,6 +11,9 @@ dependencies:
   ant-design-vue:
     specifier: ^4.1.1
     version: 4.1.1(vue@3.4.15)
+  dayjs:
+    specifier: ^1.11.10
+    version: 1.11.10
   logical-rule-computation:
     specifier: file:../../
     version: file:../..
