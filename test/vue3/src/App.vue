@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { Ref } from "vue";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 import { LOGICAL_OPERATOR, type RuleOptions } from "logical-rule-computation";
 import LogicalRuleEditor from "./components/LogicalRuleEditor/index.vue";
 import {

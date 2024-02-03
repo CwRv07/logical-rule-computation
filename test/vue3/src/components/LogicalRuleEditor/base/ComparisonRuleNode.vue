@@ -9,12 +9,7 @@ import {
   type SelectProps,
 } from "ant-design-vue";
 import { DeleteOutlined, FullscreenOutlined } from "@ant-design/icons-vue";
-import {
-  RuleEditorProps,
-  FieldLeafOption,
-  FieldParentOption,
-  OperationOption,
-} from "../types";
+import { RuleEditorProps, FieldLeafOption, FieldParentOption } from "../types";
 import {
   isFieldLeafOption,
   INTERVAL_CHAR,
