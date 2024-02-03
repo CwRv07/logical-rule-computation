@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { Ref } from "vue";
+import dayjs from 'dayjs';
 import { LOGICAL_OPERATOR, type RuleOptions } from "logical-rule-computation";
 import LogicalRuleEditor from "./components/LogicalRuleEditor/index.vue";
 import {
@@ -10,8 +11,20 @@ import {
 const rules: Ref<RuleOptions> = ref([
   LOGICAL_OPERATOR.ALL,
   [
-    ["<", "count$$totalCount", 5, "a < 1"],
-    [">", "count$$totalCount", 0, "b > 0"],
+    [
+      LOGICAL_OPERATOR.ALL,
+      [
+        ["<", "count$$totalCount", 5, "a < 1"],
+        [">", "count$$totalCount", 0, ""],
+      ],
+      "",
+    ],
+    [
+      "between-date",
+      "time$$registration-time",
+      [dayjs("2024-02-01T02:56:33.483Z"), dayjs("2024-02-16T02:56:33.483Z")],
+      "",
+    ],
   ],
 ]);
 const fieldOptions = ref<RuleEditorProps["fieldOptions"]>([
