@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toRef, ref, watch } from "vue";
+import { toRef, ref, watch,nextTick } from "vue";
 import {
   LogicalRuleItem,
   ComparisonRuleItem,
@@ -40,13 +40,15 @@ const decortationLine = toRef(state.value, "decortationLine");
 watch(
   () => rule.value[1],
   () => {
-    const height =
-      (ruleListEl.value?.firstElementChild?.clientHeight ?? 0) - 10;
-    if (height > 0 && height / 2 !== decortationLine.value.top) {
-      decortationLine.value.top = height / 2;
-    }
+    nextTick(() => {
+      const height =
+        (ruleListEl.value?.firstElementChild?.clientHeight ?? 0) - 10;
+      if (height > 0 && height / 2 !== decortationLine.value.top) {
+        decortationLine.value.top = height / 2;
+      }
+    })
   },
-  { deep: true, flush: "post" }
+  { deep: true, flush: "post", immediate: true }
 );
 
 /* 规则增删管理-start */
