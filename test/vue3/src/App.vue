@@ -83,6 +83,73 @@ const fieldOptions = ref<RuleEditorProps["fieldOptions"]>([
           },
         ],
       },
+      {
+        label: "年级",
+        value: "grade",
+        isLeaf: true,
+        operations: [
+          {
+            label: "属于",
+            value: "in",
+            type: FieldInputType.select,
+            options: {
+              mode: "multiple",
+              options: [
+                {
+                  label: "大一",
+                  value: "college-1",
+                },
+                {
+                  label: "大二",
+                  value: "college-2",
+                },
+                {
+                  label: "大三",
+                  value: "college-3",
+                },
+                {
+                  label: "大四",
+                  value: "college-4",
+                },
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "时间限制",
+    value: "time",
+    isLeaf: false,
+    children: [
+      {
+        label: "报名时间",
+        value: "registration-time",
+        isLeaf: true,
+        operations: [
+          {
+            label: "早于-日期",
+            value: "less-date",
+            type: FieldInputType.date,
+          },
+          {
+            label: "区间-日期",
+            value: "between-date",
+            type: FieldInputType.dateRange,
+          },
+          {
+            label: "早于-时间",
+            value: "less-time",
+            type: FieldInputType.time,
+          },
+          {
+            label: "区间-时间",
+            value: "between-time",
+            type: FieldInputType.timeRange,
+          },
+        ],
+      },
     ],
   },
 ]);

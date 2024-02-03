@@ -4,7 +4,9 @@ import {
   InputNumber,
   Select,
   DatePicker,
+  RangePicker,
   TimePicker,
+  TimeRangePicker,
 } from "ant-design-vue";
 import { FieldInputType } from "../types";
 const props = defineProps<{
@@ -28,18 +30,32 @@ const value = defineModel<any>();
     v-bind="props.componentProps"
   />
   <Select
-  class="w-250px"
+    class="w-250px"
     v-else-if="props.type === FieldInputType.select"
     v-model:value="value"
     v-bind="props.componentProps"
   />
   <DatePicker
+    class="w-250px"
     v-else-if="props.type === FieldInputType.date"
     v-model:value="value"
     v-bind="props.componentProps"
   />
+  <RangePicker
+    class="w-250px"
+    v-else-if="props.type === FieldInputType.dateRange"
+    v-model:value="value"
+    v-bind="props.componentProps"
+  />
   <TimePicker
+    class="w-250px"
     v-else-if="props.type === FieldInputType.time"
+    v-model:value="value"
+    v-bind="props.componentProps"
+  />
+  <TimeRangePicker
+    class="w-250px"
+    v-else-if="props.type === FieldInputType.timeRange"
     v-model:value="value"
     v-bind="props.componentProps"
   />
