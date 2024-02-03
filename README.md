@@ -3,10 +3,10 @@
 </h1>
 
 <div align="center">
-  
-![NPM Version](https://img.shields.io/npm/v/logical-rule-computation)
-![NPM Bundle Size](https://img.shields.io/bundlephobia/minzip/logical-rule-computation)
-![NPM License](https://img.shields.io/npm/l/logical-rule-computation)
+
+[![NPM Version](https://img.shields.io/npm/v/logical-rule-computation)](https://www.npmjs.com/package/logical-rule-computation)
+[![NPM Bundle Size](https://img.shields.io/bundlephobia/minzip/logical-rule-computation)](https://www.npmjs.com/package/logical-rule-computation)
+[![NPM License](https://img.shields.io/npm/l/logical-rule-computation)](https://www.npmjs.com/package/logical-rule-computation)
 
 </div>
 
