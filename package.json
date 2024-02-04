@@ -34,7 +34,8 @@
     "build": "tsc && tsc-alias && vite build",
     "init:vue": "cd ./test/vue3 && npm i",
     "dev:vue": "vite -c ./test/vue3/vite.config.ts",
-    "build:vue": "cd ./test/vue3 && npm i && npm run build"
+    "build:vue": "cd ./test/vue3 && npm run build",
+    "deploy:vue": "cd ./test/vue3 && npm i && npm run build"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
