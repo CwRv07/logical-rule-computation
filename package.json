@@ -29,10 +29,12 @@
     "require": "./dist/cjs/index.js"
   },
   "scripts": {
-    "start": "npm run build && npm run dev",
+    "start": "npm run build && npm run init:vue && npm run dev:vue",
     "dev": "npm run dev:vue",
+    "build": "tsc && tsc-alias && vite build",
+    "init:vue": "cd ./test/vue3 && npm i",
     "dev:vue": "vite -c ./test/vue3/vite.config.ts",
-    "build": "tsc && tsc-alias && vite build"
+    "build:vue": "cd ./test/vue3 && npm i && npm run build"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
