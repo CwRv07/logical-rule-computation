@@ -1,6 +1,6 @@
 {
   "name": "logical-rule-computation",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "基于JavaScript实现的逻辑规则计算库，可以通过添加逻辑和对比条件来快速计算数据是否符合要求",
   "author": "Rv_Jiang <rv_jiang@qq.com>",
   "keywords": [
