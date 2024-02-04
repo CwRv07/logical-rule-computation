@@ -102,12 +102,12 @@ console.log(report);
 | 包含     | `in`     | `Array.isArray(b) && b.includes(a)`  |
 | 不包含   | `nin`    | `Array.isArray(b) && !b.includes(a)` |
 
-**3. 自定义运算符**
+**3. 自定义比较运算符**
 
 ```typescript
 import { calc, type Operations } from "local-rule-computation";
 /*
-  自定义运算符通过键值对传入，其中key为书写方式，value为计算方法
+  自定义比较运算符通过键值对传入，其中key为书写方式，value为计算方法
   计算方法中接收两个参数，其中a表示待计算数据源，b表示规则中对应的值
 */
 const customOperations: Operations = {
