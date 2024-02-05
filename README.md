@@ -5,8 +5,10 @@
 <div align="center">
 
 [![NPM Version](https://img.shields.io/npm/v/logical-rule-computation)](https://www.npmjs.com/package/logical-rule-computation)
+[![NPM Downloads](https://img.shields.io/npm/dy/logical-rule-computation)](https://www.npmjs.com/package/logical-rule-computation)
 [![NPM Bundle Size](https://img.shields.io/bundlephobia/minzip/logical-rule-computation)](https://www.npmjs.com/package/logical-rule-computation)
 [![NPM License](https://img.shields.io/npm/l/logical-rule-computation)](https://www.npmjs.com/package/logical-rule-computation)
+
 
 </div>
 
@@ -15,7 +17,11 @@
 🧐 基于 JavaScript 实现的逻辑规则计算库，可以通过添加逻辑和对比条件来快速计算数据是否符合要求。
 
 <div>
+
+<a href="https://cwrv07.github.io/logical-rule-computation">
   <img title="测试案例截图" src="https://s2.loli.net/2024/02/03/3YwvNun2IakeUhx.png">
+</a>
+
 <div>
 
 ## 2. 使用方法
@@ -82,8 +88,8 @@ console.log(report);
 
 |      | 书写方式               | 备注 |
 | ---- | ---------------------- | ---- |
-| 与   | `LOGICAL_OPERATOR.ALL` |      |
-| 或   | `LOGICAL_OPERATOR.ANY` |      |
+| 与   | `LOGICAL_OPERATOR.ALL` |  &&    |
+| 或   | `LOGICAL_OPERATOR.ANY` |  ||    |
 
 **2. 内置比较运算符**
 
