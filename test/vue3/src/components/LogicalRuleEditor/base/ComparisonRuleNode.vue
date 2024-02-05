@@ -58,10 +58,17 @@ const handleFieldSelect = (
   selectedOptions: (FieldParentOption | FieldLeafOption)[]
 ) => {
   const currentOptions = selectedOptions[selectedOptions.length - 1];
-  if (isFieldLeafOption(currentOptions)) {
+  if (
+    isFieldLeafOption(currentOptions) &&
+    state.value.selectedLeafOption !== currentOptions
+  ) {
     state.value.selectedLeafOption = currentOptions;
+    state.value.selectedOperation = null;
+    rule.value[0] = rule.value[2] = "";
   } else {
-    return;
+    state.value.selectedLeafOption = null;
+    state.value.selectedOperation = null;
+    rule.value[0] = rule.value[2] = "";
   }
 };
 const handleOperatorSelect = (_: string, selectedOption: any) => {
